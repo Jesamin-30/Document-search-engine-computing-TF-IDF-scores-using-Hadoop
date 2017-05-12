@@ -1,13 +1,15 @@
-//Run the following commands to execute each file
+# Document-search-engine-computing-TF-IDF-scores-using-Hadoop
 
-//DocWordCount.java
+#### Run the following commands to execute each file
+
+#### DocWordCount.java
 
 the output of this DocWordCount program
 is of the form ‘word#####filename count​’, where ‘#####​’ serves as a
 delimiter between word ​and filename ​and tab ​serves as a delimiter between
 filename​ and count
 
-//creating the input directory
+#### creating the input directory
 hadoop fs -mkdir /user/cloudera/docwordcount /user/cloudera/docwordcount/input
 
 cd canterbury
@@ -22,9 +24,9 @@ jar -cvf docwordcount.jar -C docbuild/ .
 hadoop jar docwordcount.jar org.myorg.DocWordCount /user/cloudera/docwordcount/input /user/cloudera/docwordcount/output
 
 
-//TermFrequency.java
+#### TermFrequency.java
 
-Term Frequency:
+#### Term Frequency:
 Term frequency is the number of times a particular word t occurs in a document d.
 TF(t, d) = No. of ti ​ mes ​t appears in document ​d
 Since the importance of a word in a document does not necessarily scale linearly with the
@@ -48,9 +50,9 @@ jar -cvf termfrequency.jar -C tfbuild/ .
 hadoop jar termfrequency.jar org.myorg.TermFrequency /user/cloudera/termfrequency/input /user/cloudera/termfrequency/output
 
 
-//TFIDF.java
+#### TFIDF.java
 
-Inverse Document Frequency:
+#### Inverse Document Frequency:
 The inverse document frequency (IDF) is a measure of how common or rare a term is
 across all documents in the collection. It is the logarithmically scaled fraction of the
 documents that contain the word, and is obtained by taking the logarithm of the ratio of
@@ -64,7 +66,7 @@ better to return to the user results rather than nothing even if his query match
 document in the collection.
 
 
-TF-IDF:
+#### TF-IDF:
 Term frequency–inverse document frequency (TF-IDF) is a numerical statistic that is
 intended to reflect how important a word is to a document in a collection or corpus of
 documents. It is often used as a weighting factor in information retrieval and text mining.
@@ -81,7 +83,7 @@ hadoop jar tfidf.jar org.myorg.TFIDF /user/cloudera/termfrequency/input /user/cl
 
 hadoop fs -copyToLocal /user/cloudera/rank/output1 output
 
-//Search.java
+#### Search.java
 
 The job (Search.java) accepts as input a user query and outputs a
 list of documents with scores that best matches the query (a.k.a search hits​).
@@ -91,7 +93,7 @@ javac -cp /usr/lib/hadoop/*:/usr/lib/hadoop-mapreduce/* Search.java -d searchbui
 jar -cvf search.jar -C searchbuild/ .
 hadoop jar search.jar org.myorg.Search /user/cloudera/tfidf/output /user/cloudera/search/output
 
-//Rank.java
+#### Rank.java
 
 The job would accept the output of Search.java and output the search hits ranked by
 scores
